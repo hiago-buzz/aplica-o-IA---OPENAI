@@ -9,6 +9,7 @@ load_dotenv()
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 modelo = "gpt-4"
 
+
 def carrega(nome_do_arquivo):
     try:
         with open(nome_do_arquivo, "r") as arquivo:
@@ -45,23 +46,16 @@ def analisador_sentimentos(produto):
     print(f"Iniciou a análise de sentimentos do produto {produto}")
 
     lista_mensagens = [
-        {
-            "role": "system",
-            "content": prompt_sistema
-        },
-        {
-            "role": "user",
-            "content": prompt_usuario
-        },
+        {"role": "system", "content": prompt_sistema},
+        {"role": "user", "content": prompt_usuario},
     ]
 
     try:
         resposta = cliente.chat.completions.create(
-            messages=lista_mensagens,
-            model=modelo
+            messages=lista_mensagens, model=modelo
         )
 
-        texto_resposta =resposta.choices[0].message.content
+        texto_resposta = resposta.choices[0].message.content
         salva(f"./dados/analise-{produto}.txt", texto_resposta)
     except openai.AuthenticationError as e:
         print(f"Erro de Autenticação: {e}")
@@ -69,4 +63,11 @@ def analisador_sentimentos(produto):
         print(f"Erro de API: {e}")
 
 
-analisador_sentimentos("Maquiagem mineral")
+lista_de_produtos = [
+    "Camisetas de algodão orgânico",
+    "Jeans feitos com materiais reciclados",
+    "Maquiagem mineral",
+]
+
+for um_produto in lista_de_produtos:
+    analisador_sentimentos(um_produto)
