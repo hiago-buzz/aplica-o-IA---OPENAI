@@ -1,0 +1,6 @@
+"recomendacao": {
+    "transacao_id": "9c",
+    "acao": "Acionar setor Anti-Fraude",
+    "motivo": "A transação foi classificada como 'Possível Fraude' por seu valor elevado e horário inusitado de compra. Recomenda-se que o caso seja encaminhado ao setor de Anti-Fraude para que se possa realizar uma análise mais detalhada e verificar se o comprador costuma realizar transações semelhantes ou se está fora de seu padrão regular.",
+    "classificacao_fraude": "Fraude de Compra Online - Atividade fora do padrão de consumo"
+}
